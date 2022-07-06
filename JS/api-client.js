@@ -1,9 +1,6 @@
 const BASE_URL = "http://localhost:3000/";
 
-const id = '1bff780f-1a3c-410f-b935-75e4a8ac8294';
-
-
-async function getId() {
+const getId = async function (content) {
     try {
         const web = await fetch(BASE_URL, {
             headers: {
@@ -14,17 +11,32 @@ async function getId() {
             .then(data => {
 
                 selectedTask = data.filter((taskName) => {
-                    return taskName.description === li
+                    return taskName.description === content
                 })
-                // console.log(selectedTask)
+                //console.log(selectedTask)
+                selectedTask.forEach((task) => {
+                    const idd = task._id
+                    console.log(idd)
+                })
+
             });
     } catch (err) {
         console.log(err)
     }
 }
 
-//getId();
+async function deleteData(elem) {
 
+    try {
+        const res = await fetch(BASE_URL + elem, {
+            method: "DELETE",
+
+        });
+        console.log(res)
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 async function postData(task) {
     const data = { description: task, done: false };
@@ -74,18 +86,7 @@ async function getData() {
     }
 }
 
-async function deleteData() {
 
-    try {
-        const res = await fetch(BASE_URL + id, {
-            method: "DELETE",
-
-        });
-        console.log(res)
-    } catch (err) {
-        console.log(err)
-    }
-}
 
 
 
