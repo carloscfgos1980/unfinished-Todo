@@ -12,18 +12,27 @@ addForm.addEventListener('submit', function (e) {
     const value = addForm.querySelector('input[type="text"]').value;
 
 
-    postData(value);
+    //postData(value);
 
 
     getData();
 
 });
 
+
 newTask.addEventListener('click', (e) => {
 
-    const text = newTask.querySelector('li').innerText;
-    console.log(text)
+
+
     if (e.target.className === 'delete') {
+
+        const text = e.target.previousElementSibling.textContent;
+        //console.log(text)
+        const id = getId(text);
+        console.log(id)
+
+
+        //deleteData(id);
         const li = e.target.parentElement;
         li.parentNode.removeChild(li);
         // deleteData();
